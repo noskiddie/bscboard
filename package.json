@@ -3,6 +3,10 @@
   "version": "0.2.0",
   "description": "",
   "author": "me",
+  "engines": {
+    "node": "16.13.0"
+  },
+  
   "scripts": {
     "build": "webpack",
     "start": "http-server ./ -p ${PORT:=8000}"
