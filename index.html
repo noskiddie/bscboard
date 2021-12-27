@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>    
+    <link rel="shortcut icon" href="src/favicon.png" />
+    <title>theBoard</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box {
+        display:            inline-block;
+        /*width:              600px;*/
+        border:             2px solid #777777;
+        border-radius:      4px;
+        margin:             2px 2px;
+        font-size:          14px;
+        }
+        .box-message {
+            margin-left:    5px;
+            display:        inline-block;
+        }
+        .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin:             2px 2px;
+        transition-duration: 0.2s;
+        cursor:             pointer;
+        border-radius:      4px;
+        background-color:   white; 
+        color:              black; 
+        border:             2px solid #008CBA;
+        }
+        .pagesmenu {
+        border: none;
+        padding: 4px 8px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;            
+        background-color:   white; 
+        }
+
+        .button:hover {
+        background-color: #008CBA;
+        color: white;
+        }
+
+
+        .button4 {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #4CAF50;
+        border-radius: 8px;
+        height: 25px;
+        width: 100%;
+        margin-bottom: 5px;
+        /* margin: 5px; */
+        }
+
+        .button4:hover {
+        background-color: #4CAF50;
+        color: white;
+        }
+        .button5 {
+        background-color: white; 
+        color: black; 
+        border: 2px solid #f44336;
+        border-radius: 8px;
+        height: 25px;
+        width: 100%;
+        }
+
+        .button5:hover {
+        background-color: #f44336;
+        color: white;
+        }
+        .main{
+        margin: 0px;
+        /*max-width: 1440px;*/
+        height: 720px; 
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(22,22,255,0.7133228291316527) 50%, rgba(3,25,29,1) 100%);
+        }
+        .edit_menu{
+            display: inline-flex;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        .savemenu-box{
+            padding: 4px; 
+            z-index:99; 
+            position: fixed; 
+            visibility: hidden; 
+            background-color: aliceblue;
+            border: 2px solid #777777;
+            border-radius: 4px;
+        }
+        .menu_tools{
+            /*display: flex;*/
+            display: inline;
+            align-items: left;
+        }
+        .paint-box{
+            z-index:0;
+            position: relative;
+            /*display: block;
+            /*margin-left: auto; 
+            margin-right: auto;*/
+            border: 0px solid #777777;
+            /*border-radius: 8px;*/
+        }
+        @keyframes blink {
+            from { opacity: 1; /* Непрозрачный текст */ }
+            to { opacity: 0; /* Прозрачный текст */ }
+        }
+    </style>
+
+</head>
+<body> 
+    <div class="main">
+        <div class="menu_tools" style="position: relative;">
+            <div class="edit_menu">
+                <div class="pagesmenu">Board</div>
+                <div class="pagesmenu"><a href="about.html">About</a></div> 
+                <button id="edit" class="button button1">Paint</button>
+                <button id="refresh" class="button button2">Refresh</button>
+                <button id="login" class="button button3">Log in</button> 
+                <button id="logout" class="button button3">Log out</button> 
+                <div class="box"style="color: aliceblue;">
+                    <div id="loginmessage" class="box-message">Log in, please</div>
+                    <div id="message" class="box-message"></div>
+                </div>
+                <div id="savemenu" class="savemenu-box" >
+                    <h3 style="text-align: center;">Enter url:</h3> <input id="url" type="text" style="padding: 5px;" ><br>
+                    <canvas id="screen" width="100" height="100" oncontextmenu="return false;"  style="border: rgb(255, 255, 255); align-items: center; margin: 5px; display: block; margin-left: auto; margin-right: auto;" ></canvas>
+                    <div style="align-self: center;">choose color: <input id="color" type="color" style="margin: 2px;" value="#FF0000"></div>
+                    <div>
+                    <button id="save" class="button4">Save</button>
+                    <button id="closescreen" class="button5">Close</button><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="board" style="position: relative;">
+            <canvas id="board" width="1" height="1" oncontextmenu="return false;" class="paint-box"></canvas>
+            <canvas id="cursor" width="1" height="1" oncontextmenu="return false;" style="position: fixed; visibility: hidden;"></canvas>
+        </div>
+    </div>
+    <script src="dist/main.js"></script>
+
+</body>
+</html>
